@@ -24,9 +24,24 @@ html.no-js(lang='en', ng-app='myApp')
         |  browser. Please
         a(href='http://browsehappy.com/') upgrade your browser
         |  to improve your experience.
+    nav
+      div.nav-wrapper
+        ul.right.hide-on-med-and-down
+          li
+            a(href="/auth/") SIGN UP
+          li
+            a(href="/auth/") LOG IN
     div.container
       div.row.center
         h3.teal-text.text-teal-darken-1 Learn how to speed read.
+        div.row.center
+          div.col.s8.offset-s2
+            p
+              em "Speed reading
+              |  is any of several techniques used to improve one's ability to read quickly.
+              | Methods include chunking and minimizing subvocalization.
+              em "
+            a.btn.waves-effect.waves-light begin
 
     script(src='bower_components/angular/angular.js')
     script(src='bower_components/angular-route/angular-route.js')
