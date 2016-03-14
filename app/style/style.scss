@@ -1,6 +1,66 @@
+@import "materialize.scss";
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+
+$body-bg: #c1bdba;
+$white: #ffffff;
+
+$main: #1ab188;
+$main-light: lighten($main,5%);
+$main-dark: darken($main,5%);
+
+$gray-light: #a0b3b0;
+$gray: #ddd;
+
+$thin: 300;
+$normal: 400;
+$bold: 600;
+$br: 4px;
+
 html {
   font-family: 'Dosis', sans-serif;
 }
+
 body {
   background-image: url('/images/landing.jpg')
+}
+
+.inline li {
+display: inline;
+list-style-type: none;
+}
+
+.tab-group {
+  list-style:none;
+  padding:0;
+  margin:0 0 40px 0;
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  li a {
+    display:block;
+    text-decoration:none;
+    padding:15px;
+    background:rgba($gray-light,.25);
+    color:$gray-light;
+    font-size:20px;
+    float:left;
+    width:50%;
+    text-align:center;
+    cursor:pointer;
+    transition:.5s ease;
+    &:hover {
+      background: $primary-color-dark;
+      color:$white;
+    }
+  }
+  .active a {
+    background: $primary-color;
+    color:$white;
+  }
+}
+
+.c-icon {
+  padding-left: 1em;
 }

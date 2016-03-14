@@ -14,7 +14,7 @@ var gulp = require('gulp'),
 
 var files = {
   to_uglify: ['./app/js/materialize.js'],
-  sass: ['./app/style/materialize.scss', './app/style/style.scss']
+  sass: ['./app/style/style.scss']
 };
 
 gulp.task('browserify', function() {
@@ -77,6 +77,10 @@ gulp.task('sass', function() {
       }))
     .pipe(ccss())
     .pipe(gulp.dest('app/dist/css'))
+});
+
+gulp.task('sass:watch', function () {
+  gulp.watch(files.sass, ['sass']);
 });
 
 gulp.task('default', ['start']);

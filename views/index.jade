@@ -1,50 +1,17 @@
-doctype html
-//if lt IE 7
-  html.no-js.lt-ie9.lt-ie8.lt-ie7(lang='en', ng-app='myApp')
-//if IE 7
-  html.no-js.lt-ie9.lt-ie8(lang='en', ng-app='myApp')
-//if IE 8
-  html.no-js.lt-ie9(lang='en', ng-app='myApp')
-// [if gt IE 8] <!
-html.no-js(lang='en', ng-app='myApp')
-  // <![endif]
-  head
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    title Spreeder
-    meta(name='description', content='Learn how to speed read.')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(rel='stylesheet', href='dist/css/materialize.css')
-    link(rel='stylesheet', href='dist/css/style.css')
-  body
-    //if lt IE 7
-      p.browsehappy
-        | You are using an
-        strong outdated
-        |  browser. Please
-        a(href='http://browsehappy.com/') upgrade your browser
-        |  to improve your experience.
-    nav
-      div.nav-wrapper
-        ul.right.hide-on-med-and-down
-          li
-            a(href="/auth/") SIGN UP
-          li
-            a(href="/auth/") LOG IN
-    div.container
-      div.row.center
-        h3.teal-text.text-teal-darken-1 Learn how to speed read.
-        div.row.center
-          div.col.s8.offset-s2
-            p
-              em "Speed reading
-              |  is any of several techniques used to improve one's ability to read quickly.
-              | Methods include chunking and minimizing subvocalization.
-              em "
-            a.btn.waves-effect.waves-light begin
+extends ./layout.jade
 
-    script(src='bower_components/angular/angular.js')
-    script(src='bower_components/angular-route/angular-route.js')
-    script(src='dist/js/bundle.js')
-    script(src='bower_components/jquery/dist/jquery.min.js')
-    script(src='dist/js/dist.js')
+block content
+  div.container
+    div.row.center
+      h3.teal-text.text-teal-darken-1 Learn how to speed read.
+      div.row.center
+        div.col.s8.offset-s2
+          p
+            em "Speed reading
+            |  is any of several techniques used to improve one's ability to read quickly.
+            | Methods include chunking and minimizing subvocalization.
+            em "
+          a.btn.waves-effect.waves-light begin
+
+  script(src='bower_components/jquery/dist/jquery.min.js')
+  script(src='dist/js/dist.js')

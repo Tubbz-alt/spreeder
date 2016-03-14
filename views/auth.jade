@@ -1,0 +1,37 @@
+extends ./layout.jade
+
+block content
+  div.container
+    div.row.center
+      div.card.col.s6.offset-s3
+        br
+        ul.tab-group
+          li.tab.active
+            a(href='#login') Log In
+          li.tab
+            a(href='#signup') Sign Up
+        form
+          div.row
+            div.col.s12.input-field
+              input(type="text",name="username",id="username")
+              label(for="username") Username
+            div.col.s12.input-field
+              input(type="text",name="password",id="password")
+              label(for="password") Password
+            div.center
+              button.btn.waves-effect.waves-light(type="submit")
+                i.material-icons.right send
+                | Submit
+        .center
+          br
+          div.row
+            div.col.s12
+              a.btn.waves-effect.waves-light(href="auth/google")
+                |  Sign In with Google
+                i.fa.fa-google.c-icon
+
+  script(src='bower_components/jquery/dist/jquery.min.js')
+  script(src='dist/js/dist.js')
+  script(src='/bower_components/angular/angular.js')
+  script(src='/bower_components/angular-route/angular-route.js')
+  script(src='/dist/js/bundle.js')
