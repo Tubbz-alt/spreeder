@@ -1,12 +1,12 @@
 doctype html
 //if lt IE 7
-  html.no-js.lt-ie9.lt-ie8.lt-ie7(lang='en', ng-app='myApp')
+  html.no-js.lt-ie9.lt-ie8.lt-ie7(lang='en', ng-app='spreeder')
 //if IE 7
-  html.no-js.lt-ie9.lt-ie8(lang='en', ng-app='myApp')
+  html.no-js.lt-ie9.lt-ie8(lang='en', ng-app='spreeder')
 //if IE 8
-  html.no-js.lt-ie9(lang='en', ng-app='myApp')
+  html.no-js.lt-ie9(lang='en', ng-app='spreeder')
 // [if gt IE 8] <!
-html.no-js(lang='en', ng-app='myApp')
+html.no-js(lang='en', ng-app='spreeder')
   // <![endif]
   head
     meta(charset='utf-8')
@@ -28,8 +28,8 @@ html.no-js(lang='en', ng-app='myApp')
       div.nav-wrapper
         ul.right.hide-on-med-and-down(id="auth-links")
           li
-            a(href="/auth") SIGN UP
+            a(href="#/signup") SIGN UP
           li
-            a(href="/auth") LOG IN
+            a(href="#/login") LOG IN
 
     block content
