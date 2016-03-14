@@ -55,13 +55,11 @@ gulp.task('lint', function() {
 gulp.task('start', function() {
   return nodemon({
       script: 'bin/www',
-      ext: 'jade js',
-      // ignore: ['ignored.js'],
-      tasks: ['lint', 'browserify', 'jade']
+      ext: 'js'
     })
     .on('restart', function() {
       console.log('restarted.')
-    })
+    });
 });
 
 gulp.task('uglify', function() {
