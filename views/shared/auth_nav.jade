@@ -1,8 +1,5 @@
-div.row.center
-  div.card.col.l6.offset-l3.s12
-    br
-    ul.tab-group
-      li(class="tab" ng-class="{'active': login_active}")
-        a(href='#login') Log In
-      li(class="tab" ng-class="{'active': !login_active}")
-        a(href='#signup') Sign Up
+ul.tab-group
+  li(ng-class="{active: login_active, tab: true}")
+    a(href='#login') Log In
+  li(ng-class="{active: !login_active, tab: true}")
+    a(href='#signup') Sign Up
