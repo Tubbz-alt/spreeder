@@ -14,7 +14,8 @@ var gulp = require('gulp'),
 
 var files = {
   to_uglify: ['./app/js/materialize.js'],
-  sass: ['./app/style/style.scss']
+  sass: ['./app/style/style.scss'],
+  jade: ['./views/partials/*.jade']
 };
 
 gulp.task('browserify', function() {
@@ -79,8 +80,10 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('app/dist/css'))
 });
 
-gulp.task('sass:watch', function () {
+gulp.task('watch', function () {
   gulp.watch(files.sass, ['sass']);
+  gulp.watch(files.jade, ['jade']);
+  gulp.watch(['./app/js/*.js', './app/app.js'], ['browserify']);
 });
 
-gulp.task('default', ['start']);
+gulp.task('default', ['start', 'watch']);

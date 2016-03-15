@@ -26,10 +26,10 @@ html.no-js(lang='en', ng-app='spreeder')
     nav
       a.brand-logo(href="/")  Spreeder
       div.nav-wrapper
-        ul.right.hide-on-med-and-down(id="auth-links")
+        ul.right.hide-on-med-and-down(id="auth-links" ng-show="false")
           li
-            a(href="#/signup") SIGN UP
+            a(href="/auth/#/signup") SIGN UP
           li
-            a(href="#/login") LOG IN
+            a(href="/auth/#/login") LOG IN
 
     block content
