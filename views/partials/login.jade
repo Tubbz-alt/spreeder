@@ -1,19 +1,21 @@
-form
-  div.row
-    div.col.s12.input-field
-      input(type="text",name="username",id="username")
-      label(for="username") Username
-    div.col.s12.input-field
-      input(type="text",name="password",id="password")
-      label(for="password") Password
-    div.center
-      button.btn.waves-effect.waves-light(type="submit")
-        i.material-icons.right send
-        | Submit
 .center
-  br
-  div.row
-    div.col.s12
-      a.btn.waves-effect.waves-light(href="auth/google")
-        |  Log In with Google
-        i.fa.fa-google.c-icon
+  include ../shared/auth_nav.jade
+  form
+    div.row
+      div.col.s12.input-field
+        input(type="text",name="username",id="username")
+        label(for="username") Username
+      div.col.s12.input-field
+        input(type="text",name="password",id="password")
+        label(for="password") Password
+      div.center
+        button.btn.waves-effect.waves-light(type="submit")
+          i.material-icons.right send
+          | Submit
+  .center
+    br
+    div.row
+      div.col.s12
+        a.btn.waves-effect.waves-light(href="auth/google")
+          |  Log In with Google
+          i.fa.fa-google.c-icon

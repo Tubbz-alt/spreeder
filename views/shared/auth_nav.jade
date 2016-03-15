@@ -1,0 +1,8 @@
+div.row.center
+  div.card.col.l6.offset-l3.s12
+    br
+    ul.tab-group
+      li(class="tab" ng-class="{'active': login_active}")
+        a(href='#login') Log In
+      li(class="tab" ng-class="{'active': !login_active}")
+        a(href='#signup') Sign Up

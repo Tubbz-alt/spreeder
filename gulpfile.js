@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
   browserify = require('browserify'),
-  gulp_util = require('gulp-util'),
   source = require('vinyl-source-stream'),
   Server = require('karma').Server,
   jade = require('gulp-jade'),
@@ -15,14 +14,14 @@ var gulp = require('gulp'),
 var files = {
   to_uglify: ['./app/js/materialize.js'],
   sass: ['./app/style/style.scss'],
-  jade: ['./views/partials/*.jade']
+  jade: ['./views/partials/*.jade', './views/shared/*.jade']
 };
 
 gulp.task('browserify', function() {
   return browserify('./app/app.js')
     .bundle()
     .on('error', function(err) {
-      gulp_util(err);
+      console.log(err);
     })
     .pipe(source('bundle.js'))
     .pipe(buffer())

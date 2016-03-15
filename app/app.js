@@ -1,5 +1,7 @@
 'use strict';
 
+require('./bower_components/angular/angular.js');
+require('./bower_components/angular-route/angular-route.js');
 require('./js/auth.js');
 
 angular.module('spreeder', ['spreeder.auth', 'ngRoute'])
@@ -7,11 +9,11 @@ angular.module('spreeder', ['spreeder.auth', 'ngRoute'])
     $routeProvider.
       when('/login', {
         templateUrl: '/views/login.html',
-        controller: 'LoginCtrl'
+        controller: 'AuthCtrl'
       }).
       when('/signup', {
         templateUrl: '/views/signup.html',
-        controller: 'SignupCtrl'
+        controller: 'AuthCtrl'
       }).
       otherwise({
         redirectTo: '/login'
