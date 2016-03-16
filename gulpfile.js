@@ -26,7 +26,7 @@ gulp.task('browserify', function() {
     .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(uglify())
-    .pipe(gulp.dest('app/dist/js'));
+    .pipe(gulp.dest('public/dist/js'));
 });
 
 /**
@@ -40,11 +40,11 @@ gulp.task('test', function(done) {
 });
 
 gulp.task('jade', function() {
-  return gulp.src('./views/partials/*.jade')
+  return gulp.src('./views/*.jade')
     .pipe(jade({
       // locals: YOUR_LOCALS
     }))
-    .pipe(gulp.dest('./app/views'))
+    .pipe(gulp.dest('./public/views'))
 });
 
 gulp.task('lint', function() {
@@ -76,7 +76,7 @@ gulp.task('sass', function() {
         console.log(error);
       }))
     .pipe(ccss())
-    .pipe(gulp.dest('app/dist/css'))
+    .pipe(gulp.dest('public/dist/css'))
 });
 
 gulp.task('watch', function () {

@@ -1,7 +1,7 @@
 'use strict';
 
-require('./bower_components/angular/angular.js');
-require('./bower_components/angular-route/angular-route.js');
+require('../public/bower_components/angular/angular.js');
+require('../public/bower_components/angular-route/angular-route.js');
 require('./js/auth.js');
 
 angular.module('spreeder', ['spreeder.auth', 'ngRoute'])

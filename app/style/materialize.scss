@@ -13,10 +13,9 @@
 
 // components
 @import "components/global";
-@import "components/icons-material-design";
 @import "components/grid";
+@import "components/icons-material-design";
 @import "components/navbar";
-@import "components/roboto";
 @import "components/typography";
 @import "components/cards";
 @import "components/toast";
@@ -36,6 +35,3 @@
 
 // Import Dosis font.
 @import url(https://fonts.googleapis.com/css?family=Dosis:400,500,700);
-
-// Import icons
-@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
