@@ -1,8 +1,8 @@
 div.row.center
   div.card.col.l6.offset-l3.s12
     br
-    include ../shared/auth_nav.jade
-    form(ng-submit="register")
+    include shared/auth_nav.jade
+    form(ng-submit="register()")
       div.row
         div.col.s12.input-field
           input(type="text",ng-model="user.username",id="username")

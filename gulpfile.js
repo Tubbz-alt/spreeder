@@ -14,7 +14,8 @@ var gulp = require('gulp'),
 var files = {
   to_uglify: ['./app/js/materialize.js'],
   sass: ['./app/style/style.scss'],
-  jade: ['./views/partials/*.jade', './views/shared/*.jade']
+  jade: ['./app/views/*.jade'],
+  browserify: ['./app/js/*.js', './app/app.js']
 };
 
 gulp.task('browserify', function() {
@@ -40,7 +41,7 @@ gulp.task('test', function(done) {
 });
 
 gulp.task('jade', function() {
-  return gulp.src('./views/*.jade')
+  return gulp.src(files.jade)
     .pipe(jade({
       // locals: YOUR_LOCALS
     }))
@@ -82,7 +83,8 @@ gulp.task('sass', function() {
 gulp.task('watch', function () {
   gulp.watch(files.sass, ['sass']);
   gulp.watch(files.jade, ['jade']);
-  gulp.watch(['./app/js/*.js', './app/app.js'], ['browserify']);
+  gulp.watch(files.browserify, ['browserify']);
 });
 
 gulp.task('default', ['start', 'watch']);
+gulp.task('build', ['lint', 'browserify', 'jade', 'uglify', 'sass']);

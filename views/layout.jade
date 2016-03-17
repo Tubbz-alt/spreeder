@@ -26,10 +26,15 @@ html.no-js(lang='en', ng-app='spreeder')
     nav
       a.brand-logo(href="/")  Spreeder
       div.nav-wrapper
-        ul.right.hide-on-med-and-down(id="auth-links" ng-show="false")
+        ul.right.hide-on-med-and-down(id="auth-links")
           li
             a(href="/auth/#/signup") SIGN UP
           li
             a(href="/auth/#/login") LOG IN
 
     block content
+
+    script(src='/bower_components/jquery/dist/jquery.min.js')
+    script(src='/dist/js/dist.js')
+    script(src='/dist/js/bundle.js')
+
