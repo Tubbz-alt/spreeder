@@ -60,10 +60,22 @@ list-style-type: none;
   }
   .active a {
     background: $primary-color;
-    color:$white;
+    color: $white;
   }
 }
 
 .c-icon {
   padding-left: 1em;
+}
+
+.err {
+  font-size: 80%;
+}
+
+.err h3 {
+  color: $error-color;
+}
+
+.err-pane {
+  background: $white;
 }
