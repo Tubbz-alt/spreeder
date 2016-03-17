@@ -1,7 +1,40 @@
 doctype html
-html
+//if lt IE 7
+  html.no-js.lt-ie9.lt-ie8.lt-ie7(lang='en', ng-app='spreeder')
+//if IE 7
+  html.no-js.lt-ie9.lt-ie8(lang='en', ng-app='spreeder')
+//if IE 8
+  html.no-js.lt-ie9(lang='en', ng-app='spreeder')
+// [if gt IE 8] <!
+html.no-js(lang='en', ng-app='spreeder')
+  // <![endif]
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title #{title}
+    meta(name='description', content='Learn how to speed read.')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/dist/css/style.css')
   body
+    //if lt IE 7
+      p.browsehappy
+        | You are using an
+        strong outdated
+        |  browser. Please
+        a(href='http://browsehappy.com/') upgrade your browser
+        |  to improve your experience.
+    nav
+      a.brand-logo(href="/")  Spreeder
+      div.nav-wrapper
+        ul.right.hide-on-med-and-down(id="auth-links")
+          li
+            a(href="/auth/#/signup") SIGN UP
+          li
+            a(href="/auth/#/login") LOG IN
+
     block content
+
+    script(src='/bower_components/jquery/dist/jquery.min.js')
+    script(src='/dist/js/dist.js')
+    script(src='/dist/js/bundle.js')
+

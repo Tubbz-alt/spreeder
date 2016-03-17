@@ -1,0 +1,29 @@
+div.row.center
+  div.card.col.l6.offset-l3.s12
+    br
+    include shared/auth_nav.jade
+    form(ng-submit="register()")
+      div.row
+        div.col.s12.input-field
+          input(type="text",ng-model="user.username",id="username")
+          label(for="username") Username
+        div.col.s12.input-field
+          input(type="text",ng-model="user.email",id="email")
+          label(for="email") Email
+        div.col.s12.input-field
+          input(type="text",ng-model="user.password",id="password")
+          label(for="password") Password
+        div.col.s12.input-field
+          input(type="text",ng-model="user.cpassword",id="cpassword")
+          label(for="cpassword") Confirm password
+        div.center
+          button.btn.waves-effect.waves-light(type="submit")
+            i.material-icons.right send
+            | Submit
+    .center
+      br
+      div.row
+        div.col.s12
+          a.btn.waves-effect.waves-light(href="auth/google")
+            |  Sign Up with Google
+            i.fa.fa-google.c-icon

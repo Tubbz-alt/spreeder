@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
   browserify = require('browserify'),
-  gulp_util = require('gulp-util'),
   source = require('vinyl-source-stream'),
   Server = require('karma').Server,
   jade = require('gulp-jade'),
@@ -14,19 +13,21 @@ var gulp = require('gulp'),
 
 var files = {
   to_uglify: ['./app/js/materialize.js'],
-  sass: ['./app/style/materialize.scss', './app/style/style.scss']
+  sass: ['./app/style/style.scss'],
+  jade: ['./app/views/*.jade'],
+  browserify: ['./app/js/*.js', './app/app.js']
 };
 
 gulp.task('browserify', function() {
   return browserify('./app/app.js')
     .bundle()
     .on('error', function(err) {
-      gulp_util(err);
+      console.log(err);
     })
     .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(uglify())
-    .pipe(gulp.dest('app/dist/js'));
+    .pipe(gulp.dest('public/dist/js'));
 });
 
 /**
@@ -40,11 +41,11 @@ gulp.task('test', function(done) {
 });
 
 gulp.task('jade', function() {
-  return gulp.src('./views/partials/*.jade')
+  return gulp.src(files.jade)
     .pipe(jade({
       // locals: YOUR_LOCALS
     }))
-    .pipe(gulp.dest('./app/views'))
+    .pipe(gulp.dest('./public/views'))
 });
 
 gulp.task('lint', function() {
@@ -76,7 +77,14 @@ gulp.task('sass', function() {
         console.log(error);
       }))
     .pipe(ccss())
-    .pipe(gulp.dest('app/dist/css'))
+    .pipe(gulp.dest('public/dist/css'))
 });
 
-gulp.task('default', ['start']);
+gulp.task('watch', function () {
+  gulp.watch(files.sass, ['sass']);
+  gulp.watch(files.jade, ['jade']);
+  gulp.watch(files.browserify, ['browserify']);
+});
+
+gulp.task('default', ['start', 'watch']);
+gulp.task('build', ['lint', 'browserify', 'jade', 'uglify', 'sass']);

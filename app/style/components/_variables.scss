@@ -51,10 +51,6 @@ $dropdown-hover-bg-color: #eee !default;
 $dropdown-color: $secondary-color !default;
 $dropdown-item-height: 50px !default;
 
-/*** Fonts ***/
-$roboto-font-path: "/font/roboto/" !default;
-$icons-font-path: "/font/material-design-icons/" !default;
-
 /*** Forms ***/
 // Text Inputs + Textarea
 $input-border-color: color("grey", "base") !default;
@@ -159,3 +155,6 @@ $collection-link-color: $secondary-color !default;
 
 /* Progress Bar */
 $progress-bar-color: $secondary-color !default;
+
+/* Icons font path */
+$icons-font-path: 'https://fonts.googleapis.com/icon?family=Material+Icons';
