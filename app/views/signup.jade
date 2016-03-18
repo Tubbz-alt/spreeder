@@ -1,20 +1,21 @@
 div.row.center
+  include shared/auth_msgs.jade
   div.card.col.l6.offset-l3.s12
     br
     include shared/auth_nav.jade
-    form(ng-submit="register()")
+    form(ng-submit="register()", name='signup')
       div.row
         div.col.s12.input-field
-          input(type="text",ng-model="user.username",id="username")
+          input(type="text",ng-model="user.username",id="username",required)
           label(for="username") Username
         div.col.s12.input-field
-          input(type="text",ng-model="user.email",id="email")
+          input(type="email",ng-model="user.email",id="email",required)
           label(for="email") Email
         div.col.s12.input-field
-          input(type="text",ng-model="user.password",id="password")
+          input(type="password",ng-model="user.password",id="password", required, pattern=".{2,}")
           label(for="password") Password
         div.col.s12.input-field
-          input(type="text",ng-model="user.cpassword",id="cpassword")
+          input(type="password",ng-model="user.cpassword",id="cpassword", required, pattern=".{2,}")
           label(for="cpassword") Confirm password
         div.center
           button.btn.waves-effect.waves-light(type="submit")

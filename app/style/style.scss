@@ -68,8 +68,15 @@ list-style-type: none;
   padding-left: 1em;
 }
 
+.alert {
+  background: $white;
+  color: $success-color;
+  padding: 0.5px;
+}
+
 .err {
   font-size: 80%;
+  color: $error-color;
 }
 
 .err h3 {

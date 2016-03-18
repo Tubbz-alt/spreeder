@@ -6,7 +6,6 @@ angular.module('spreeder.auth', [])
       } else {
         $scope.login_active = false;
       }
-
       $scope.login = function() {
         // first, check if user is already authenticated.
         if ($rootScope.user) {
@@ -25,19 +24,23 @@ angular.module('spreeder.auth', [])
       };
 
       $scope.register = function() {
+        $rootScope.auth_msg = '';
+        $rootScope.auth_err = '';
         // first, check if user is already authenticated.
         if ($rootScope.user) {
           $location.path('/dashboard');
-        } else {
+        } else if ($scope.signup.$valid && $scope.user.cpassword
+          == $scope.user.password) {
           auth.register($scope.user, function(err, res) {
             if (err) {
               console.log('Login error: ', err);
             } else {
-              // handle token here.
-              console.log(res);
-              $location.path('/dashboard');
+              $rootScope.auth_msg = 'Registration successful. Login to continue.';
+              $location.path('/login');
             }
           });
+        } else {
+          $rootScope.auth_err = 'The Passwords do not match.';
         }
       };
     }
@@ -46,14 +49,14 @@ angular.module('spreeder.auth', [])
     function($http) {
       return {
         login: function(user, cb) {
-          $http.post('/users/login', user).success(function(res) {
+          $http.post('/auth/login', user).success(function(res) {
             cb(null, res);
           }).error(function(err) {
             cb(err);
           });
         },
         register: function(user, cb) {
-          $http.post('users/register', user).success(function(res) {
+          $http.post('/auth/register', user).success(function(res) {
             cb(null, res);
           }).error(function(err) {
             cb(err);
