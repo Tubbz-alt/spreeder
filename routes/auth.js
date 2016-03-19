@@ -1,4 +1,5 @@
 var express = require('express');
+var helpers = require('../helpers');
 var router = express.Router();
 var mongoose = require('mongoose');
 
@@ -33,7 +34,9 @@ router.post('/login', function(req, res, next) {
 
 router.post('/register', function(req, res, next) {
   var user = req.body;
-
+  user.salt = helpers.generateSalt();
+  // Prepend salt.
+  user.password = helpers.md5(salt + user.password);
   User.create(user, function(err, user) {
     if (err) {
       res.send(err);
