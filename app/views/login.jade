@@ -1,14 +1,15 @@
 div.row.center
+  include shared/auth_msgs.jade
   div.card.col.l6.offset-l3.s12
     br
     include shared/auth_nav.jade
     form(ng-submit="login()")
       div.row
         div.col.s12.input-field
-          input(type="text",name="user.username",id="username")
+          input(type="text", ng-model="user.username",id="username", required)
           label(for="username") Username or Email
         div.col.s12.input-field
-          input(type="text", ng-model="user.password", id="password")
+          input(type="password", ng-model="user.password", id="password", required)
           label(for="password") Password
         div.col.s12.input-field
           button.btn.waves-effect.waves-light(type="submit")
