@@ -2,6 +2,7 @@ var express = require('express');
 var helpers = require('../helpers');
 var router = express.Router();
 var mongoose = require('mongoose');
+var jwt = require('jwt-simple');
 
 var User = mongoose.model('User');
 
@@ -17,16 +18,23 @@ router.post('/login', function(req, res, next) {
   } else {
     query_obj.username = req.body.username;
   }
-
+  console.log(req.body);
   User.findOne(query_obj, function(err, user) {
     if (err) {
       res.send(err);
     } else {
       if (!user) {
-        res.send({msg: 'No Such User Found.'});
+        console.log('No such user found.');
+        res.send({msg: 'Credentials don\'t match.'});
+      } else if (helpers.md5(user.salt + req.body.password)
+        != user.password) {
+        console.log('Passwords do not match.');
+        res.send({msg: 'Credentials don\'t match.'});
       } else {
-        // check if passwords match
-        res.send({token: 'a token'});
+        // generate jwt token
+        var secret = process.env.SECRET;
+        var token = jwt.encode(user, secret);
+        res.send(token);
       }
     }
   });
@@ -36,9 +44,10 @@ router.post('/register', function(req, res, next) {
   var user = req.body;
   user.salt = helpers.generateSalt();
   // Prepend salt.
-  user.password = helpers.md5(salt + user.password);
+  user.password = helpers.md5(user.salt + user.password);
   User.create(user, function(err, user) {
     if (err) {
+      console.log(err);
       res.send(err);
     } else {
       res.send(user);

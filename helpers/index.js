@@ -1,3 +1,5 @@
+var crypto = require('crypto');
+
 module.exports = {
   generateSalt: function () {
     var set = '0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ';
