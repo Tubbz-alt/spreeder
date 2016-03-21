@@ -24,9 +24,9 @@ html.no-js(lang='en', ng-app='spreeder')
         a(href='http://browsehappy.com/') upgrade your browser
         |  to improve your experience.
     nav
-      a.brand-logo(href="/")  Spreeder
+      a.brand-logo(href="/")  spreeder
       div.nav-wrapper
-        ul.right.hide-on-med-and-down(id="auth-links")
+        ul.right.hide-on-med-and-down(id="auth-links", ng-show="!logged_in")
           li
             a(href="/#/signup") SIGN UP
           li

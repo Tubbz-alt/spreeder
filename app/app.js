@@ -3,8 +3,9 @@
 require('../public/bower_components/angular/angular.js');
 require('../public/bower_components/angular-route/angular-route.js');
 require('./js/auth.js');
+require('./js/dash.js');
 
-angular.module('spreeder', ['spreeder.auth', 'ngRoute'])
+angular.module('spreeder', ['spreeder.auth', 'spreeder.dash', 'ngRoute'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/', {
@@ -17,6 +18,10 @@ angular.module('spreeder', ['spreeder.auth', 'ngRoute'])
       when('/signup', {
         templateUrl: '/views/signup.html',
         controller: 'AuthCtrl'
+      }).
+      when('/dashboard', {
+        templateUrl: '/views/dashboard.html',
+        controller: 'DashCtrl'
       }).
       otherwise({
         redirectTo: '/login'

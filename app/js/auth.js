@@ -17,6 +17,7 @@ angular.module('spreeder.auth', [])
             } else {
               // handle token here.
               console.log(res);
+              $rootScope.logged_in = true;
               $location.path('/dashboard');
             }
           });

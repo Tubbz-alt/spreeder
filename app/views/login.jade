@@ -1,24 +1,25 @@
-div.row.center
-  include shared/auth_msgs.jade
-  div.card.col.l6.offset-l3.s12
-    br
-    include shared/auth_nav.jade
-    form(ng-submit="login()")
-      div.row
-        div.col.s12.input-field
-          input(type="text", ng-model="user.username",id="username", required)
-          label(for="username") Username or Email
-        div.col.s12.input-field
-          input(type="password", ng-model="user.password", id="password", required)
-          label(for="password") Password
-        div.col.s12.input-field
-          button.btn.waves-effect.waves-light(type="submit")
-            i.material-icons.right send
-            | Submit
-    .center
+div.container
+  div.row.center
+    include shared/auth_msgs.jade
+    div.card.col.l6.offset-l3.s12
       br
-      div.row
-        div.col.s12
-          a.btn.waves-effect.waves-light(href="auth/google")
-            |  Log In with Google
-            i.fa.fa-google.c-icon
+      include shared/auth_nav.jade
+      form(ng-submit="login()")
+        div.row
+          div.col.s12.input-field
+            input(type="text", ng-model="user.username",id="username", required)
+            label(for="username") Username or Email
+          div.col.s12.input-field
+            input(type="password", ng-model="user.password", id="password", required)
+            label(for="password") Password
+          div.col.s12.input-field
+            button.btn.waves-effect.waves-light(type="submit")
+              i.material-icons.right send
+              | Submit
+      .center
+        br
+        div.row
+          div.col.s12
+            a.btn.waves-effect.waves-light(href="auth/google")
+              |  Log In with Google
+              i.fa.fa-google.c-icon
