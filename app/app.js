@@ -19,12 +19,8 @@ angular.module('spreeder', ['spreeder.auth', 'spreeder.dash', 'ngRoute'])
         templateUrl: '/views/signup.html',
         controller: 'AuthCtrl'
       }).
-      when('/dashboard', {
-        templateUrl: '/views/dashboard.html',
-        controller: 'DashCtrl'
-      }).
       otherwise({
-        redirectTo: '/login'
+        redirectTo: '/'
       });
     }
   ]);

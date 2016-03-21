@@ -23,10 +23,6 @@ html {
   font-family: 'Dosis', sans-serif;
 }
 
-body {
-  background-image: url('/images/landing.jpg')
-}
-
 .inline li {
 display: inline;
 list-style-type: none;
@@ -94,3 +90,29 @@ list-style-type: none;
 #auth-links {
   margin-right: 15px;
 }
+
+.app-nav {
+  padding: 0px !important;
+  background-color: $primary-color-dark;
+  height: 100vh;
+  ul li {
+  padding: 20px;
+  }
+  li {
+    &:hover {
+      background: $primary-color;
+    }
+    a {
+      color:$white;
+      width:50%;
+      text-align:center;
+      cursor:pointer;
+      transition:.5s ease;
+    }
+    &.active {
+      background: $primary-color;
+    }
+  }
+}
+
+

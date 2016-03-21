@@ -24,13 +24,16 @@ html.no-js(lang='en', ng-app='spreeder')
         a(href='http://browsehappy.com/') upgrade your browser
         |  to improve your experience.
     nav
-      a.brand-logo(href="/")  spreeder
+      a.brand-logo(href="/")  speed reader
       div.nav-wrapper
         ul.right.hide-on-med-and-down(id="auth-links", ng-show="!logged_in")
           li
             a(href="/#/signup") SIGN UP
           li
             a(href="/#/login") LOG IN
+        ul.right.hide-on-med-and-down(id="auth-links", ng-show="logged_in")
+          li
+            i.material-icons face
 
     block content
 
