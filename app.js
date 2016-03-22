@@ -26,6 +26,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// log all requests during development.
+app.use(function (req, res, next) {
+    console.log('Headers:', req.headers);
+    console.log('Body:', req.body);
+    next();
+  });
+
 app.use('/', routes);
 app.use('/auth', auth);
 app.use('/users', users);

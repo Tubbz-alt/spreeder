@@ -31,9 +31,14 @@ router.post('/login', function(req, res, next) {
         console.log('Passwords do not match.');
         res.send({msg: 'Credentials don\'t match.'});
       } else {
-        // generate jwt token
         var secret = process.env.SECRET;
-        var token = jwt.encode(user, secret);
+        var temp = {
+          exp: Date.now(),
+          username: user.username,
+          _id: user._id,
+          email: user.email
+        };
+        var token = jwt.encode(temp, secret);
         res.send(token);
       }
     }

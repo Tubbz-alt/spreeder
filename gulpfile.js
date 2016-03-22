@@ -14,7 +14,7 @@ var gulp = require('gulp'),
 var files = {
   to_uglify: ['./app/js/materialize.js'],
   sass: ['./app/style/style.scss'],
-  jade: ['./app/views/*.jade', './app/views/*.*/*.jade'],
+  jade: ['./app/views/*.jade', './app/views/**/*.jade'],
   browserify: ['./app/js/*.js', './app/app.js']
 };
 

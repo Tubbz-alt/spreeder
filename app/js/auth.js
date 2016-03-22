@@ -1,6 +1,6 @@
 angular.module('spreeder.auth', [])
-  .controller('AuthCtrl', ['$scope', '$location', '$rootScope', 'authService',
-    function($scope, $location, $rootScope, auth) {
+  .controller('AuthCtrl', ['$scope', '$location', '$rootScope', 'authService', 'tokenService',
+    function($scope, $location, $rootScope, auth, tokenService) {
       if ($location.path() == '/login') {
         $scope.login_active = true;
       } else {
@@ -15,8 +15,7 @@ angular.module('spreeder.auth', [])
             if (err) {
               console.log('Login error: ', err);
             } else {
-              // handle token here.
-              console.log(res);
+              tokenService.setToken(res);
               $rootScope.logged_in = true;
               $location.path('/dashboard');
             }
@@ -46,8 +45,8 @@ angular.module('spreeder.auth', [])
       };
     }
   ])
-  .factory('authService', ['$http',
-    function($http) {
+  .factory('authService', ['$http', '$window',
+    function($http, $window) {
       return {
         login: function(user, cb) {
           $http.post('/auth/login', user).success(function(res) {
@@ -56,6 +55,7 @@ angular.module('spreeder.auth', [])
             cb(err);
           });
         },
+
         register: function(user, cb) {
           $http.post('/auth/register', user).success(function(res) {
             cb(null, res);
@@ -65,4 +65,44 @@ angular.module('spreeder.auth', [])
         }
       }
     }
-  ]);
+  ])
+  .factory('tokenService', ['$window',
+    function($window) {
+      return {
+        setToken: function(token) {
+          $window.localStorage['jwtToken'] = token;
+        },
+
+        getToken: function() {
+          return $window.localStorage['jwtToken'];
+        },
+
+        parseJwt: function(token) {
+          var base64Url = token.split('.')[1];
+          var base64 = base64Url.replace('-', '+').replace('_', '/');
+          return JSON.parse($window.atob(base64));
+        },
+
+        isAuthenticated: function() {
+          var token = this.getToken();
+          if(token) {
+            var params = this.parseJwt(token);
+            return Math.round(new Date().getTime() / 1000) <= params.exp;
+          } else {
+            return false;
+          }
+        }
+      }
+    }
+  ])
+  .factory('authInterceptor', ['tokenService', function(tokenService) {
+    return {
+      'request': function(config) {
+        console.log('authenticated: ', tokenService.isAuthenticated());
+        if (tokenService.isAuthenticated()) {
+          config.headers['Authorization'] = tokenService.getToken();
+        }
+        return config;
+      }
+    }
+  }]);
