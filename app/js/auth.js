@@ -43,10 +43,15 @@ angular.module('spreeder.auth', [])
           $rootScope.auth_err = 'The Passwords do not match.';
         }
       };
+
+      $rootScope.logout = function() {
+        auth.logout();
+        $location.path('/login');
+      };
     }
   ])
-  .factory('authService', ['$http', '$window',
-    function($http, $window) {
+  .factory('authService', ['$http', '$window', 'tokenService',
+    function($http, $window, tokenService) {
       return {
         login: function(user, cb) {
           $http.post('/auth/login', user).success(function(res) {
@@ -62,8 +67,12 @@ angular.module('spreeder.auth', [])
           }).error(function(err) {
             cb(err);
           });
+        },
+
+        logout: function() {
+          tokenService.removeToken();
         }
-      }
+      };
     }
   ])
   .factory('tokenService', ['$window',
@@ -75,6 +84,10 @@ angular.module('spreeder.auth', [])
 
         getToken: function() {
           return $window.localStorage['jwtToken'];
+        },
+
+        removeToken: function() {
+          $window.localStorage.removeItem('jwtToken');
         },
 
         parseJwt: function(token) {

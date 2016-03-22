@@ -33,7 +33,7 @@ html.no-js(lang='en', ng-app='spreeder')
             a(href="/#/login") LOG IN
         ul.right.hide-on-med-and-down(id="auth-links", ng-show="logged_in")
           li
-            i.material-icons face
+            i.material-icons.logout(ng-click="logout()") face
 
     block content
 
