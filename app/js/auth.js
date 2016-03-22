@@ -16,7 +16,6 @@ angular.module('spreeder.auth', [])
               console.log('Login error: ', err);
             } else {
               tokenService.setToken(res);
-              $rootScope.logged_in = true;
               $location.path('/dashboard');
             }
           });
@@ -48,6 +47,7 @@ angular.module('spreeder.auth', [])
         auth.logout();
         $location.path('/login');
       };
+
     }
   ])
   .factory('authService', ['$http', '$window', 'tokenService',
@@ -111,7 +111,6 @@ angular.module('spreeder.auth', [])
   .factory('authInterceptor', ['tokenService', function(tokenService) {
     return {
       'request': function(config) {
-        console.log('authenticated: ', tokenService.isAuthenticated());
         if (tokenService.isAuthenticated()) {
           config.headers['Authorization'] = tokenService.getToken();
         }

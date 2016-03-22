@@ -26,4 +26,9 @@ angular.module('spreeder', ['spreeder.auth', 'angular-loading-bar', 'spreeder.da
 
     $httpProvider.interceptors.push('authInterceptor');
     }
-  ]);
+  ])
+  .run(['$rootScope', 'tokenService', function($rootScope, tokenService) {
+    $rootScope.isAuthenticated = function() {
+      return tokenService.isAuthenticated();
+    };
+  }]);
