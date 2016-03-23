@@ -7,19 +7,27 @@
         textarea#paste-textarea.materialize-textarea
         label(for='paste-textarea') Textarea
       .col.s12.input-field.offset-l2.l8
-        select(ng-options="chunk.name for chunk in chunks track by chunk.size"
-          ng-model="chunkSize")
+        select(ng-model="chunkSize")
+          option(value='1') one word at a time
+          option(value='2') Two words at a time
+          option(value='3') Three word at a time
         label Chunk Size
       .col.s12.input-field.offset-l2.l8
-        select(ng-options="{{ speed + ' wpm'}} for speed in speeds track by speed"
-          ng-model="speed")
+        select(ng-model="speed")
+          option(value='300') 300
+          option(value='320') 320
+          option(value='340') 340
+          option(value='360') 360
         label Words per Minute
       .col.s12.input-field.offset-l2.l8
         button.btn.waves-effect.waves-light(ng-click="speedRead()")
           i.material-icons.right send
           | Speed Read
       script.
-        $('select').material_select();
+        $(document).ready(function() {
+          $('select').material_select();
+        })
+
 
 
 

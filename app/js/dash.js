@@ -18,21 +18,5 @@ angular.module('spreeder.dash', ['ngRoute'])
       $scope.speedRead = function() {
 
       };
-      $scope.chunks = [
-        {
-          name: 'one word at a time',
-          size: 1
-        },
-        {
-          name: 'Two words at a time',
-          size: 2
-        },
-        {
-          name: 'Three word at a time',
-          size: 3
-        }
-      ];
-
-      $scope.speeds = [300, 320, 340, 360];
     }
   ]);
