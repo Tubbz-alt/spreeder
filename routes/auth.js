@@ -29,7 +29,8 @@ router.post('/login', function(req, res, next) {
       } else if (helpers.md5(user.salt + req.body.password)
         != user.password) {
         console.log('Passwords do not match.');
-        res.send({msg: 'Credentials don\'t match.'});
+        anError = new Error('Credentials do not match');
+        res.send(anError);
       } else {
         var secret = process.env.SECRET;
         var temp = {

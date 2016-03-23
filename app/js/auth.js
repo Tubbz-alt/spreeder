@@ -8,15 +8,17 @@ angular.module('spreeder.auth', [])
       }
       $scope.login = function() {
         // first, check if user is already authenticated.
-        if ($rootScope.user) {
+        if ($rootScope.isAuthenticated()) {
           $location.path('/dashboard');
         } else {
           auth.login($scope.user, function(err, res) {
             if (err) {
               console.log('Login error: ', err);
-            } else {
+            } else if (res) {
               tokenService.setToken(res);
               $location.path('/dashboard');
+            } else {
+              $rootScope.auth_err = 'Authentication failed';
             }
           });
         }
@@ -87,7 +89,7 @@ angular.module('spreeder.auth', [])
         },
 
         removeToken: function() {
-          $window.localStorage.removeItem('jwtToken');
+          $window.localStorage.clear();
         },
 
         parseJwt: function(token) {
@@ -98,7 +100,7 @@ angular.module('spreeder.auth', [])
 
         isAuthenticated: function() {
           var token = this.getToken();
-          if(token) {
+          if(token != undefined && token != {}) {
             var params = this.parseJwt(token);
             return Math.round(new Date().getTime() / 1000) <= params.exp;
           } else {
