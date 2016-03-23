@@ -39,14 +39,13 @@ angular.module('spreeder', ['spreeder.auth', 'angular-loading-bar', 'spreeder.da
       };
 
       $rootScope.$on("$routeChangeStart", function(event, next, current) {
-        if (tokenService.isAuthenticated()) {
-          console.log($location.path());
-          if ($location.path() == '/logout') {
-            $rootScope.logout();
-          }
-          else if ($location.path() != '/' && $location.path() != '') {
-            $location.path("/dashboard/spreed");
-          }
+        var redirectRoutes = ['/login', '/signup'];
+        if ($location.path() == '/logout') {
+          $rootScope.logout();
+        }
+        else if (tokenService.isAuthenticated() &&
+          redirectRoutes.indexOf($location.path()) != -1) {
+          $location.path("/dashboard/spreed");
         }
       });
     }
