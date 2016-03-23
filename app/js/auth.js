@@ -18,7 +18,7 @@ angular.module('spreeder.auth', [])
               tokenService.setToken(res);
               $location.path('/dashboard');
             } else {
-              $rootScope.auth_err = 'Authentication failed';
+              $rootScope.auth_err = 'Credentials do not match';
             }
           });
         }
@@ -28,7 +28,7 @@ angular.module('spreeder.auth', [])
         $rootScope.auth_msg = '';
         $rootScope.auth_err = '';
         // first, check if user is already authenticated.
-        if ($rootScope.user) {
+        if ($rootScope.isAuthenticated()) {
           $location.path('/dashboard');
         } else if ($scope.signup.$valid && $scope.user.cpassword
           == $scope.user.password) {
@@ -43,11 +43,6 @@ angular.module('spreeder.auth', [])
         } else {
           $rootScope.auth_err = 'The Passwords do not match.';
         }
-      };
-
-      $rootScope.logout = function() {
-        auth.logout();
-        $location.path('/login');
       };
 
     }

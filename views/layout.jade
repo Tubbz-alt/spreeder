@@ -33,7 +33,12 @@ html.no-js(lang='en', ng-app='spreeder')
             a(href="/#/login") LOG IN
         ul.right.hide-on-med-and-down(id="auth-links", ng-show="isAuthenticated()")
           li
-            i.material-icons.logout(ng-click="logout()") face
+            i.material-icons.logout.dropdown-button(data-activates='menu') face
+            ul.dropdown-content(id="menu")
+              li
+                a(href="/#/dashboard") Dashboard
+              li
+                a(href="/#/logout", ng-click="logout()") Logout
 
     block content
 

@@ -27,8 +27,27 @@ angular.module('spreeder', ['spreeder.auth', 'angular-loading-bar', 'spreeder.da
     $httpProvider.interceptors.push('authInterceptor');
     }
   ])
-  .run(['$rootScope', 'tokenService', function($rootScope, tokenService) {
-    $rootScope.isAuthenticated = function() {
-      return tokenService.isAuthenticated();
-    };
-  }]);
+  .run(['$rootScope', 'tokenService', '$location',
+    function($rootScope, tokenService, $location) {
+      $rootScope.isAuthenticated = function() {
+        return tokenService.isAuthenticated();
+      };
+
+      $rootScope.logout = function() {
+        tokenService.removeToken();
+        $location.path("/login");
+      };
+
+      $rootScope.$on("$routeChangeStart", function(event, next, current) {
+        if (tokenService.isAuthenticated()) {
+          console.log($location.path());
+          if ($location.path() == '/logout') {
+            $rootScope.logout();
+          }
+          else if ($location.path() != '/' && $location.path() != '') {
+            $location.path("/dashboard/spreed");
+          }
+        }
+      });
+    }
+  ]);
