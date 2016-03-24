@@ -21,16 +21,16 @@ router.post('/login', function(req, res, next) {
   console.log(req.body);
   User.findOne(query_obj, function(err, user) {
     if (err) {
-      res.send(err);
+      res.status(500).send(err);
     } else {
+      anError = new Error('Credentials do not match');
       if (!user) {
         console.log('No such user found.');
-        res.send({msg: 'Credentials don\'t match.'});
+        res.status(401).send(anError);
       } else if (helpers.md5(user.salt + req.body.password)
         != user.password) {
         console.log('Passwords do not match.');
-        anError = new Error('Credentials do not match');
-        res.send(anError);
+        res.status(401).send(anError);
       } else {
         var secret = process.env.SECRET;
         var temp = {
@@ -54,7 +54,7 @@ router.post('/register', function(req, res, next) {
   User.create(user, function(err, user) {
     if (err) {
       console.log(err);
-      res.send(err);
+      res.status(500).send(err);
     } else {
       res.send(user);
     }
