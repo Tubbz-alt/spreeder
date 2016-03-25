@@ -2,9 +2,10 @@
   include shared/dashboard_nav.jade
   .col.s12.l10.center
     h5 Paste your text
-    .row
+    form.row(ng-submit="speedRead()" name="getText")
       .input-field.col.s12.offset-l2.l8
-        textarea#paste-text.materialize-textarea
+        textarea#paste-text.materialize-textarea(required pattern='(.|[\r\n]){100,}',
+          ng-model="pasteText")
         label(for='paste-text') Text to speed read
       .col.s12.input-field.offset-l2.l8
         select(ng-model="chunkSize")
@@ -20,13 +21,14 @@
           option(value='360') 360
         label Words per Minute
       .col.s12.input-field.offset-l2.l8
-        button.btn.waves-effect.waves-light(ng-click="speedRead()")
+        button.btn.waves-effect.waves-light
           i.material-icons.right send
           | Speed Read
-      script.
-        $(document).ready(function() {
-          $('select').material_select();
-        })
+
+script.
+  $(document).ready(function() {
+    $('select').material_select();
+  })
 
 
 
