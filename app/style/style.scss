@@ -84,20 +84,24 @@ list-style-type: none;
   background: $white;
 }
 
-.brand-logo {
+#brand-logo {
   margin-left: 15px;
+  cursor: pointer;
+  z-index: 1;
 }
 
-#auth-links {
+#auth-links, #auth-actions {
   margin-right: 15px;
 }
 
 .app-nav {
   padding: 0px !important;
   background-color: $primary-color-dark;
-  height: 100vh;
+  @media (min-width: 992px) {
+    height: 100vh;
+  }
   ul li {
-  padding: 20px;
+    padding: 20px;
   }
   li {
     &:hover {
@@ -120,7 +124,7 @@ list-style-type: none;
   cursor: pointer;
 }
 
-#paste-textarea {
+#paste-text {
   min-width: 300px;
   min-height: 200px;
 }

@@ -15,6 +15,7 @@ angular.module('spreeder.auth', [])
           auth.login($scope.user, function(err, res) {
             if (err) {
               console.log('Login error: ', err);
+              $scope.user.password = '';
               $rootScope.auth_err = 'Credentials do not match';
             } else {
               tokenService.setToken(res);

@@ -24,14 +24,14 @@ html.no-js(lang='en', ng-app='spreeder')
         a(href='http://browsehappy.com/') upgrade your browser
         |  to improve your experience.
     nav
-      a.brand-logo(href="/")  sr
+      a.brand-logo#brand-logo(href="/#/") sr
       div.nav-wrapper
         ul.right.hide-on-med-and-down(id="auth-links", ng-show="!isAuthenticated()")
           li
             a(href="/#/signup") SIGN UP
           li
             a(href="/#/login") LOG IN
-        ul.right.hide-on-med-and-down(id="auth-links", ng-show="isAuthenticated()")
+        ul.right.hide-on-med-and-down(id="auth-actions", ng-show="isAuthenticated()")
           li
             i.material-icons.logout.dropdown-button(data-activates='menu') face
             ul.dropdown-content(id="menu")
