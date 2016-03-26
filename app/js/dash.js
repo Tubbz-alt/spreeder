@@ -33,7 +33,7 @@ angular.module('spreeder.dash', ['ngRoute'])
   ])
   .controller('SpreedCtrl', ['$scope', 'spreedService',
     function($scope, spreedService) {
-      $scope.text = spreedService.text;
+      $scope.data = spreedService;
     }
   ])
   .factory('spreedService', function() {
