@@ -31,9 +31,18 @@ angular.module('spreeder.dash', ['ngRoute'])
       };
     }
   ])
-  .controller('SpreedCtrl', ['$scope', 'spreedService',
-    function($scope, spreedService) {
+  .controller('SpreedCtrl', ['$scope', 'spreedService', '$interval',
+    function($scope, spreedService, $interval) {
       $scope.data = spreedService;
+      $scope.position = 0;
+      $scope.live = $scope.data.text.split(' ');
+
+      $scope.startSpreeding = function() {
+        $interval(function() {
+          $scope.live_text = $scope.live[$scope.position];
+          $scope.position++;
+        }, $scope.speed);
+      };
     }
   ])
   .factory('spreedService', function() {

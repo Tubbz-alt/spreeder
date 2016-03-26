@@ -4,4 +4,7 @@
     h5 Start Spreeding
     #read-area
       h1
-        | {{ data.text }}
+        | {{ live_text }}
+  .col.s12.input-field.offset-l2.l8
+    button.btn.waves-effect.waves-light(ng-click="startSpreeding()")
+      i.material-icons play arrow
