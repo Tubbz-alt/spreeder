@@ -36,12 +36,13 @@ angular.module('spreeder.dash', ['ngRoute'])
       $scope.data = spreedService;
       $scope.position = 0;
       $scope.live = $scope.data.text.split(' ');
-
+      $scope.live_speed = 60000.0 / $scope.data.speed;
+      alert($scope.live_speed);
       $scope.startSpreeding = function() {
         $interval(function() {
           $scope.live_text = $scope.live[$scope.position];
           $scope.position++;
-        }, $scope.speed);
+        }, $scope.live_speed);
       };
     }
   ])
