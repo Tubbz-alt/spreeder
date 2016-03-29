@@ -21,12 +21,23 @@ angular.module('spreeder.dash', ['ngRoute'])
     function($scope, $location, spreedService) {
       $scope.speedRead = function() {
         if ($scope.getText.$valid) {
+          $scope.getText_err = [];
           spreedService.speed = $scope.speed;
           spreedService.chunkSize = $scope.chunkSize;
           spreedService.text = $scope.pasteText;
+          alert(JSON.stringify($scope.chunkSize));
           $location.path('/dashboard/spreed/start');
         } else {
-          alert('Minimum words: 100');
+          $scope.getText_err = [];
+          if ($scope.pasteText.length < 100) {
+            $scope.getText_err.push('Minimum words: 100');
+          }
+          if ($scope.chunkSize == undefined) {
+            $scope.getText_err.push('Choose a chunk size');
+          }
+          if ($scope.speed == undefined){
+            $scope.getText_err.push('Choose the reading speed (words per minute)');
+          }
         }
       };
     }
@@ -34,6 +45,7 @@ angular.module('spreeder.dash', ['ngRoute'])
   .controller('SpreedCtrl', ['$scope', 'spreedService', '$interval',
     function($scope, spreedService, $interval) {
       $scope.data = spreedService;
+      alert(JSON.stringify(spreedService));
       $scope.position = 0;
       $scope.live = $scope.data.text.split(' ');
       $scope.live_speed = 60000.0 / $scope.data.speed;

@@ -23,6 +23,7 @@ gulp.task('browserify', function() {
     .bundle()
     .on('error', function(err) {
       console.log(err);
+      this.emit("end");
     })
     .pipe(source('bundle.js'))
     .pipe(buffer())
