@@ -41,20 +41,26 @@ angular.module('spreeder.dash', ['ngRoute'])
       };
     }
   ])
-  .controller('SpreedCtrl', ['$scope', 'spreedService', '$interval',
-    function($scope, spreedService, $interval) {
+  .controller('SpreedCtrl', ['$scope', 'spreedService', '$interval', '$location',
+    function($scope, spreedService, $interval, $location) {
       $scope.data = spreedService;
-      var position = 0;
-      $scope.data.text.replace(/[\n\r]+/g, ' ');
-      $scope.live = $scope.data.text.split(' ');
-      $scope.live_speed = 60000.0 / $scope.data.speed;
-      var length = $scope.live.length;
+      if ($scope.data.text == '') {
+        $location.path('/dashboard/spreed');
+      }
+
       $scope.startSpreeding = function() {
+        $scope.playing = true;
+        var position = 0;
+        $scope.data.text.replace(/[\n\r]+/g, ' ');
+        $scope.live = $scope.data.text.split(' ');
+        $scope.live_speed = 60000.0 / $scope.data.speed;
+        var length = $scope.live.length;
         stop = $interval(function() {
           var upperBound = $scope.data.chunkSize + position;
           if (upperBound >= length) {
             $interval.cancel(stop);
             $scope.live_text = $scope.live.slice(position, length).join(' ');
+            $scope.playing = false;
           } else {
             $scope.live_text = $scope.live.slice(position, upperBound).join(' ');
             position = upperBound;

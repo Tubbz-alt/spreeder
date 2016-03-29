@@ -2,8 +2,11 @@
   include shared/dashboard_nav.jade
   .col.s12.l10.center
     h5 Start Spreeding
+  .col.s12.input-field.offset-l2.l8
+    a.btn-floating(ng-class="{disabled: playing}")
+      i.material-icons.small(ng-click="startSpreeding()")
+        | play_arrow
+  .col.s12.l10.center
     #read-area
       h1
         | {{ live_text }}
-  .col.s12.input-field.offset-l2.l8
-    i.material-icons.small(ng-click="startSpreeding()") play_arrow
