@@ -11,13 +11,14 @@
           ng-model="pasteText")
         label(for='paste-text') Text to speed read
       .col.s12.input-field.offset-l2.l8
-        select(ng-model="chunkSize" ng-init="chunkSize = 1" required)
+        select(ng-model="chunkSize" ng-init="chunkSize = '1'" required)
           option(value='1') One word at a time
           option(value='2') Two words at a time
-          option(value='3') Three word at a time
+          option(value='3') Three words at a time
+          option(value='4') Four words at a time
         label Chunk Size
       .col.s12.input-field.offset-l2.l8
-        select(ng-model="speed" ng-init="speed = 300" required)
+        select(ng-model="speed" ng-init="speed = '300'" required)
           option(value='300') 300
           option(value='320') 320
           option(value='340') 340
