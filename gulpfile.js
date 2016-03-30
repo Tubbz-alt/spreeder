@@ -27,7 +27,7 @@ gulp.task('browserify', function() {
     .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(uglify())
-    .pipe(gulp.dest('public/dist/js'));
+    .pipe(gulp.dest('./public/dist/js'));
 });
 
 gulp.task('jade', function() {
@@ -57,7 +57,7 @@ gulp.task('uglify', function() {
   gulp.src(files.to_uglify)
     .pipe(uglify())
     .pipe(rename('dist.js'))
-    .pipe(gulp.dest('app/dist/js'));
+    .pipe(gulp.dest('./public/dist/js'));
 });
 
 gulp.task('sass', function() {
@@ -67,7 +67,7 @@ gulp.task('sass', function() {
         console.log(error);
       }))
     .pipe(ccss())
-    .pipe(gulp.dest('public/dist/css'))
+    .pipe(gulp.dest('./public/dist/css'))
 });
 
 gulp.task('watch', function () {
