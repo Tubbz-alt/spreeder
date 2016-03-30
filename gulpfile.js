@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
   browserify = require('browserify'),
   source = require('vinyl-source-stream'),
-  Server = require('karma').Server,
   jade = require('gulp-jade'),
   nodemon = require('gulp-nodemon'),
   jshint = require('gulp-jshint'),
@@ -29,16 +28,6 @@ gulp.task('browserify', function() {
     .pipe(buffer())
     .pipe(uglify())
     .pipe(gulp.dest('public/dist/js'));
-});
-
-/**
- * Run test once and exit
- */
-gulp.task('test', function(done) {
-  new Server({
-    configFile: __dirname + '/tests/f-end/unit-tests/karma.conf.js',
-    singleRun: true
-  }, done).start();
 });
 
 gulp.task('jade', function() {
