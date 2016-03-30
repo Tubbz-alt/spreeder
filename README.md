@@ -1,19 +1,12 @@
-# Spreeder
+# Spreed Reader
 
 Learn how to speed read.
+To learn more about speed reading, read [this](https://docs.google.com/document/d/1UsmsEKXLL-jTIexudQYQ4z57lDWP_h3q3IfJSnXRjXU/pub) document.
+The [web app](https://speed-reader.herokuapp.com), aims at helping you minimize subvocalization, eliminating backreading and increasing chunk comprehension.
 
-
-## Pre-requisites
+## Local installation
 
 Install [Node.js](https://nodejs.org/en/download/)
-
-## Usage
-
-Do a shallow clone of the repo.
-```
-git clone https://github.com/andela-bmosigisi/mean-starter.git
-cd mean-starter
-```
 
 Install node dependencies
 ```
@@ -26,24 +19,7 @@ Fetch bower components
 bower install
 ```
 
-Run the application server
+Complete the build and start the local server
 ```
-npm start
-```
-For live reload
-```
-gulp start
-```
-
-## Testing
-
-Running unit tests:
-```
-gulp test
-```
-
-Running end to end tests:
-```
-npm run update-webdriver
-npm run protractor
+gulp build
 ```
