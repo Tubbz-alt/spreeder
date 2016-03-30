@@ -87,5 +87,5 @@ gulp.task('watch', function () {
   gulp.watch(files.browserify, ['browserify']);
 });
 
-gulp.task('default', ['start', 'build', 'watch']);
-gulp.task('build', ['lint', 'browserify', 'jade', 'uglify', 'sass']);
+gulp.task('default', ['build', 'watch']);
+gulp.task('build', ['lint', 'browserify', 'jade', 'uglify', 'sass', 'start']);

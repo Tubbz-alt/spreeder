@@ -2,7 +2,7 @@
   include shared/dashboard_nav.jade
   .col.s12.l10.center.err(ng-show="getText_err.length != 0")
     p(ng-repeat="i in getText_err")
-      {{ i }}
+      | {{ i }}
   .col.s12.l10.center
     h5 Paste your text
     form.row(ng-submit="speedRead()" name="getText")
